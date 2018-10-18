@@ -16,13 +16,15 @@ $(document).ready(function() {
   $("form#triangleNumbers").submit(function(event) {
 
     var lengthA = parseInt($("input#sideA").val());
-    console.log(lengthA);
     var lengthB = parseInt($("input#sideB").val());
     var lengthC = parseInt($("input#sideC").val());
 
 
-    if (lengthA === lengthB && lengthB === lengthC && lengthA === lengthC) {
-      $("#equilateral").show();
+    if (lengthA + lengthB < lengthC || lengthB + lengthC < lengthA || lengthA + lengthC < lengthB) {
+       $("#notTriangle").show();
+     }
+     else if (lengthA === lengthB && lengthA === lengthC || lengthB === lengthC && lengthA === lengthC) {
+       $("#equilateral").show();
     }
     else if (lengthA === lengthB || lengthB === lengthC || lengthA === lengthC) {
       $("#isoceles").show();
@@ -30,12 +32,7 @@ $(document).ready(function() {
     else if (lengthA != lengthB && lengthB != lengthC && lengthA != lengthC) {
       $("#scalene").show();
     }
-    else if ((lengthA + lengthB) < lengthC ||
-              (lengthA + lengthC) < lengthB ||
-              (lengthB + lengthC) <lengthA)
-    {
-      $("#notTriangle").show();
-    }
+
 
     // function draw() {
 //
